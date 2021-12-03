@@ -16,20 +16,11 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-//@EnableAuthorizationServer
-//@EnableResourceServer
-//@EnableWebSecurity
 @EnableAuthorizationServer
 public class AuthorizarionServerConfig extends AuthorizationServerConfigurerAdapter {
 	
 	@Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	@Autowired
-	JwtAccessTokenConverter acessTokenConverter;
-	
-	@Autowired
-	JwtTokenStore tokenStore;
 	
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -52,9 +43,6 @@ public class AuthorizarionServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		endpoints.authenticationManager(authenticationManager)
-		.tokenStore(tokenStore)
-		.accessTokenConverter(acessTokenConverter);
+		endpoints.authenticationManager(authenticationManager);
 	}
-
 }
