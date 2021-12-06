@@ -15,10 +15,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
-@Configuration
-//@EnableAuthorizationServer
-//@EnableResourceServer
-//@EnableWebSecurity
+//@Configuration
+@EnableWebSecurity
+@EnableResourceServer
 @EnableAuthorizationServer
 public class AuthorizarionServerConfig extends AuthorizationServerConfigurerAdapter {
 	
@@ -43,8 +42,8 @@ public class AuthorizarionServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
-			.withClient("miqueias")
-		    .secret(bCryptPasswordEncoder.encode("123"))
+			.withClient("postman")
+		    .secret(bCryptPasswordEncoder.encode("12345"))
 		    .scopes("read", "write")
 		    .authorizedGrantTypes("password")
 		    .accessTokenValiditySeconds(86400);
