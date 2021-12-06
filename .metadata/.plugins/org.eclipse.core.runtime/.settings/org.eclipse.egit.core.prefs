@@ -1,0 +1,4 @@
+GitRepositoriesView.GitDirectories=/home/miqueias/projects/poc2/.git\:/home/miqueias/projects/github/spring-security-oauth/.git\:/home/miqueias/projects/github/springboot-oauth2-jwt/.git\:
+GitRepositoriesView.GitDirectories.relative=.git\:/home/miqueias/projects/github/spring-security-oauth/.git\:/home/miqueias/projects/github/springboot-oauth2-jwt/.git\:
+core_autoIgnoreDerivedResources=false
+eclipse.preferences.version=1

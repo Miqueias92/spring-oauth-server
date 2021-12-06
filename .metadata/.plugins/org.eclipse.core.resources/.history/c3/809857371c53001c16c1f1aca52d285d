@@ -1,0 +1,6 @@
+package com.example.testeserver.config;
+
+@Enable
+public class AppConfig {
+
+}

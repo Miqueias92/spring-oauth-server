@@ -1,0 +1,5 @@
+package com.example.resourceserver.controller;
+
+public class ResourceController {
+
+}

@@ -1,0 +1,19 @@
+package com.example.resourceserver.config;
+
+import org.springframework.context.annotation.Bean;
+
+@EnableWebSecurity
+public class ResourceServerConfig {
+	
+	@Bean
+	JwtAccessTokenConverter acessTokenConverter() {
+		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
+		tokenConverter.setSigningKey("MY-SECRET-KEY");
+		return tokenConverter;
+	}
+
+	@Bean
+	JwtTokenStore tokenStore() {
+		return new JwtTokenStore(acessTokenConverter());
+	}
+}

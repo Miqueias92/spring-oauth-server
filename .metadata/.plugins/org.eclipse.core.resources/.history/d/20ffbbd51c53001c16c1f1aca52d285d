@@ -1,0 +1,17 @@
+package com.example.testeserver.config;
+
+import static org.springframework.security.config.Customizer.withDefaults;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.web.SecurityFilterChain;
+
+//@EnableWebSecurity
+@EnableAuthorizationServer
+@EnableResourceServer
+public class AppConfig {
+
+}

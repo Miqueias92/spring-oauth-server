@@ -1,0 +1,52 @@
+package com.example.resourceserver.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+//@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) 
+public class EnableWebSecurityConfig extends WebSecurityConfigurerAdapter{
+    
+	private final String clientId;
+	private final String clientSecret;
+	private final String introspectionUrl;
+    
+//    @Bean
+//	@Override
+//	protected AuthenticationManager authenticationManager() throws Exception {
+//		return super.authenticationManager();
+//	}
+    
+    EnableWebSecurityConfig(
+            @Value("${oauth.clientId}") final String clientId,
+            @Value("${oauth.clientSecret}") final String clientSecret,
+            @Value("${oauth.introspectionUrl}") final String introspectionUrl) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.introspectionUrl = introspectionUrl;
+    }
+    
+    @Override
+    public void configure(final HttpSecurity http) throws Exception {
+        http.authorizeRequests(authz -> authz
+                .antMatchers(HttpMethod.GET, "protected-resource").hasAnyAuthority("SCOPE_read")
+                .antMatchers(HttpMethod.POST, "protected-resource").hasRole("ADMIN")
+                .anyRequest().permitAll())
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .opaqueToken(token -> token.introspectionUri(introspectionUrl)
+                                .introspectionClientCredentials(clientId, clientSecret)
+                        )
+                );
+    }
+
+
+}

@@ -1,0 +1,27 @@
+package com.example.auth.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AppConfig  {
+	
+	
+  @Bean
+  BCryptPasswordEncoder bCryptPasswordEncoder {
+      return BCryptPasswordEncoder();
+  }
+
+  @Bean
+  @Primary
+  fun acessTokenConverter(): JwtAccessTokenConverter {
+      var tokenConverter = JwtAccessTokenConverter()
+      tokenConverter.setSigningKey("MY-SECRET-KEY")
+      return tokenConverter
+  }
+
+  @Bean
+  fun tokenStore(): JwtTokenStore {
+      return  JwtTokenStore(acessTokenConverter())
+  }
+	
+}

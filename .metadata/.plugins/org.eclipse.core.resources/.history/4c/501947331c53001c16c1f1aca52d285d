@@ -1,0 +1,5 @@
+package com.example.testeserver.config;
+
+public class AppConfig {
+
+}

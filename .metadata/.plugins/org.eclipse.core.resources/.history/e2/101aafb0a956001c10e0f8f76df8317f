@@ -1,0 +1,5 @@
+server.port=8083
+
+oauth.clientId=miqueias
+oauth.clientSecret=123
+oauth.introspectionUrl=http://localhost:8080/oauth/check_token

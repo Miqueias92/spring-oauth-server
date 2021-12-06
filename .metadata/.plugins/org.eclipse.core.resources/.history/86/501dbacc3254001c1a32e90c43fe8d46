@@ -1,0 +1,5 @@
+server.port=8083
+
+oauth.clientId: ${CLIENT_ID:my-trusted-ui}
+oauth.clientSecret: ${CLIENT_PASSWORD:Passw0rd#}
+oauth.introspectionUrl: ${INTROSPECTION_URL:http://localhost:8081/oauth/check_token}
